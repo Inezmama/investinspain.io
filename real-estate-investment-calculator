@@ -58,3 +58,100 @@
 </body>
 <script src="script.js"></script>
 </html>
+
+function calculateROI() {
+    // 获取用户输入的值
+    const totalInvestment = parseFloat(document.getElementById("totalInvestment").value);
+    const annualRent = parseFloat(document.getElementById("annualRent").value);
+    const annualCost = parseFloat(document.getElementById("annualCost").value);
+
+    // 检查输入是否有效
+    if (isNaN(totalInvestment) || isNaN(annualRent) || isNaN(annualCost)) {
+        document.getElementById("result").innerHTML = "请填写所有字段并确保输入有效数字！";
+        return;
+    }
+
+    // 计算净年租金收入和投资回报率
+    const netAnnualRent = annualRent - annualCost;
+    const roi = (netAnnualRent / totalInvestment) * 100;
+
+    // 显示结果
+    document.getElementById("result").innerHTML = `投资回报率为：<strong>${roi.toFixed(2)}%</strong>`;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房产投资回报率计算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>房产投资回报率计算器</h2>
+        <form id="roiForm">
+            <label for="totalInvestment">总投资金额（元）</label>
+            <input type="number" id="totalInvestment" placeholder="如：550000" required>
+
+            <label for="annualRent">年租金收入（元）</label>
+            <input type="number" id="annualRent" placeholder="如：60000" required>
+
+            <label for="annualCost">年持有成本（元）</label>
+            <input type="number" id="annualCost" placeholder="如：10000" required>
+
+            <button type="button" onclick="calculateROI()">计算回报率</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+    <script>
+        function calculateROI() {
+            const totalInvestment = parseFloat(document.getElementById("totalInvestment").value);
+            const annualRent = parseFloat(document.getElementById("annualRent").value);
+            const annualCost = parseFloat(document.getElementById("annualCost").value);
+
+            if (isNaN(totalInvestment) || isNaN(annualRent) || isNaN(annualCost)) {
+                document.getElementById("result").innerHTML = "请填写所有字段并确保输入有效数字！";
+                return;
+            }
+
+            const netAnnualRent = annualRent - annualCost;
+            const roi = (netAnnualRent / totalInvestment) * 100;
+
+            document.getElementById("result").innerHTML = `投资回报率为：<strong>${roi.toFixed(2)}%</strong>`;
+        }
+    </script>
+</body>
+</html>
+
